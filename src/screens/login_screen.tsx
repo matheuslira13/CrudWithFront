@@ -1,9 +1,5 @@
-import Login from "../templates/LoginTemplate";
+import { Login } from "../templates/LoginTemplate";
 
-const LoginScreen = () =>{
-    return(
-        <Login/>
-    )
-}
-
-export default LoginScreen
+export const LoginTemplete = () => {
+  return <Login />;
+};

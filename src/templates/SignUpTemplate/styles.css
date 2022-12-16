@@ -1,0 +1,14 @@
+.container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.teste {
+  background-color: aqua;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}

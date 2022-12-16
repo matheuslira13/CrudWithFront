@@ -1,0 +1,56 @@
+.containerLogin {
+  flex-direction: column;
+  background-image: url("../../../public/login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginTextContainer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50;
+  .inputLogin {
+    width: 300px;
+    margin: 10px;
+    border-bottom: 3px solid #000;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-family: "Russo One", sans-serif;
+    color: #fff;
+  }
+  input::placeholder {
+    color: white;
+    font-family: "Russo One", sans-serif;
+  }
+  input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+  }
+  .btnLogin {
+    width: 300px;
+    margin: 10px;
+    background-color: rgb(66, 42, 133);
+    height: 50px;
+    font-family: "Russo One", sans-serif;
+    color: #fff;
+  }
+  @media screen and (max-width: 300px) {
+    .btnLogin {
+      width: 200px;
+    }
+    .inputLogin {
+      width: 200px;
+    }
+    .inputLogin {
+      width: 200px;
+    }
+  }
+}

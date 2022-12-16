@@ -1,40 +1,39 @@
 import { Fragment } from "react";
 
-import { BrowserRouter,Route,Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Login from "../screens/login_screen";
-import SignIn from "../screens/signIn_screen";
-import Home from "../screens/home_screen"
+import { useEffect } from "react";
+import { LoginTemplete } from "../screens/login_screen";
+import { HomeTemplate } from "../screens/home_screen";
+import { SignUpScreen } from "../screens/signUp_screen";
 import { RequireAuth } from "../components";
 
-const RoutesApp = ()=>{
+import axios from "axios";
 
-    const Private = ({Item}:any) =>{
-        const isLoged = false
+const client = axios.create({
+  baseURL: "http://localhost:3333",
+});
 
-        return isLoged   ? <Item/> : <SignIn/>
-    }
+const RoutesApp = () => {
+  return (
+    <BrowserRouter>
+      <Fragment>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <HomeTemplate />
+              </RequireAuth>
+            }
+          />
+          <Route path="/*" element={<SignUpScreen />} />
+          <Route path="/login" element={<LoginTemplete />} />
+          <Route path="/signUp" element={<SignUpScreen />} />
+        </Routes>
+      </Fragment>
+    </BrowserRouter>
+  );
+};
 
-    return(
-        <BrowserRouter>
-            <Fragment>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<RequireAuth><Private Item={Home}/></RequireAuth>}
-                    />
-                    <Route
-                        path="*"
-                        element={<SignIn/>}
-                    />
-                     <Route
-                        path="/login"
-                        element={<Login/>}
-                    />
-                </Routes>
-            </Fragment>
-        </BrowserRouter>
-    )
-}
-
-export default RoutesApp
+export default RoutesApp;
