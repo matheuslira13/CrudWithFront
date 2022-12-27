@@ -1,0 +1,27 @@
+.containerUserInfoComplete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.iconeInLeft {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 15px;
+}
+.DesciptionInRight {
+  display: flex;
+  justify-content: flex-start;
+}
+.icons {
+  width: 30px;
+  height: 30px;
+}
+.description {
+  padding: 15px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}

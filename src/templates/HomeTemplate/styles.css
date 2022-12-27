@@ -1,62 +1,14 @@
-.container {
+.containerHome {
   width: 100%;
   flex-direction: row;
   display: flex;
 }
+
 .subContainer {
   display: flex;
   flex-direction: column;
   flex: 1;
   margin: 30px;
-}
-.profileInfo {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin: 30px;
-  border-radius: 30px;
-  background-color: rgb(255, 255, 255);
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-  box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-}
-img {
-  width: 400px;
-  height: 400px;
-}
-
-.userName {
-}
-.userInfoComplete {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin: 30px;
-  border-radius: 30px;
-  background-color: rgb(255, 255, 255);
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-  box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
-}
-.containerUserInfoComplete {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 30px;
-}
-.iconSocialMedia {
-  width: 30px;
-  height: 30px;
-}
-
-.fullName {
-  padding: 15px;
-}
-.userEmail {
-  padding: 15px;
 }
 
 .cashoutContainer {
@@ -67,32 +19,32 @@ img {
   border-radius: 30px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(96, 19, 184, 0.9);
   -webkit-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
   -moz-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
   box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
 }
-.histoeyContainer {
+.cashoutFirstRow {
   display: flex;
-  flex: 3;
+  flex-direction: row;
+}
+
+.userInfoComplete {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   margin: 30px;
   border-radius: 30px;
-
-  align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(96, 19, 184, 0.9);
   -webkit-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
   -moz-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
   box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
 }
 
-table {
-  border: 2px solid #000;
-  border-radius: 20px;
-}
-
-td {
-  border: 1px solid #000;
-  padding-left: 15px;
-  padding-right: 15px;
+@media screen and (max-width: 900px) {
+  .containerHome {
+    flex-direction: column !important;
+  }
+  .profileInfo {
+  }
 }

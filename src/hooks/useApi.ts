@@ -5,9 +5,7 @@ const api = axios.create({
 });
 
 export const validateToken = async (url: string) => {
-  console.log(url);
   const response = await api.get(`/validate/${url}`);
-  console.log("aqui", response);
   return response.data;
 };
 

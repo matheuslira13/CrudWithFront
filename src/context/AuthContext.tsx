@@ -6,6 +6,17 @@ export type UserType = {
   email: string;
   balance: number;
   password?: string;
+  facebook?: string;
+  github?: string;
+  linkedin?: string;
+  historic?: [
+    {
+      type: string;
+      date: string;
+      hours: string;
+      value: string;
+    }
+  ];
 };
 
 export type AuthContextType = {

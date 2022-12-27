@@ -20,9 +20,7 @@ class UserController {
       const createdSignUp = await userModel.create(body);
       return res.status(200).json(createdSignUp);
     } catch (error) {
-      return res
-        .status(400)
-        .json({ message: `Por favor digite outro e-mail ${error}` });
+      return res.status(400).json({ message: `Error ${error}` });
     }
   }
 
@@ -80,6 +78,20 @@ class UserController {
         .json({ message: " Nao foi possivel excluir o usuario" });
     }
     return res.status(200).json({ message: "Deletado com sucesso" });
+  }
+  async teste({ body }, res) {
+    const { value, email, id } = body;
+
+    // const verifyIfIsSameEmail = await userModel.findOne({ email: email });
+
+    const getUser = await userModel.findById(id);
+
+    try {
+      const updateData = await userModel.insertMany([getUser, body]);
+      return res.status(200).json(updateData);
+    } catch (error) {
+      return res.status(400).json({ message: `Error ${error}` });
+    }
   }
 }
 

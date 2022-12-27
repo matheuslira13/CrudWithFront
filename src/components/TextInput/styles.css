@@ -1,0 +1,19 @@
+.inputInsert {
+  width: 300px;
+  margin: 10px;
+  border-bottom: 3px solid #000;
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  font-family: "Russo One", sans-serif;
+  color: #fff;
+}
+.btnLogin {
+  width: 300px;
+  margin: 10px;
+  background-color: rgb(66, 42, 133);
+  height: 50px;
+  font-family: "Russo One", sans-serif;
+  color: #fff;
+}

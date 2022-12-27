@@ -22,5 +22,6 @@ routes.post("/signIn", UserController.signIn);
 routes.get("/getUsers", UserController.getUsers);
 routes.get("/validate/:id", UserController.validateToken);
 routes.delete("/deleteUser/:id", UserController.destroyUser);
+routes.post("/teste", UserController.teste);
 
 module.exports = routes;

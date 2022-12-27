@@ -1,0 +1,20 @@
+.profileInfo {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 30px;
+  border-radius: 30px;
+  background-color: rgba(96, 19, 184, 0.9);
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
+  box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 1);
+}
+.imgProfile {
+  width: 400px;
+  height: 400px;
+}
+.description {
+  padding: 15px;
+}
