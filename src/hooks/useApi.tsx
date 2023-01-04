@@ -19,3 +19,25 @@ export const SignOut = async () => {
   const response = await api.post("/logout");
   return response.data;
 };
+
+export const cashoutFunction = async (
+  sendEmail: string,
+  email: string,
+  value: string
+) => {
+  const response = await api.post("/cashout", {
+    sendEmail,
+    value,
+    email,
+    type: "cash-out",
+  });
+
+  await api.post("/cashin", {
+    sendEmail,
+    value,
+    email,
+    type: "cash-in",
+  });
+
+  return response.data;
+};

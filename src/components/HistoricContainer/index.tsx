@@ -23,6 +23,7 @@ export const HistoricContainer = ({
       <table>
         <tr>
           <th>Type</th>
+          <th>E-mail</th>
           <th>Data</th>
           <th>Horario</th>
           <th>Valor</th>
@@ -35,6 +36,7 @@ export const HistoricContainer = ({
             return (
               <tr key={e.id}>
                 <td>{e.type} </td>
+                <td>{e.email}</td>
                 <td>{e.date} </td>
                 <td>{e.hours} </td>
                 <td>{e.value} </td>

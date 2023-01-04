@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import useCurrency from "../../utils/useCurrency";
 import "./styles.css";
 
 type IconProps = {
@@ -10,6 +12,8 @@ type IconProps = {
 
 export const Icon = ({ icone, name, url, type }: IconProps) => {
   const [open, setOpen] = useState(false);
+  const auth = useContext(AuthContext);
+  const { formatValue } = useCurrency();
   if (type === "socialMedia") {
     return (
       <div className="containerUserInfoComplete">
@@ -32,18 +36,27 @@ export const Icon = ({ icone, name, url, type }: IconProps) => {
     return (
       <>
         <div className="containerUserInfoComplete">
-          <div className="iconeInLeft">
-            <button onClick={() => setOpen(!open)}>
+          <div className="iconeEyeMoney">
+            {open ? (
+              <h4>***</h4>
+            ) : (
+              <h4> &nbsp;{formatValue(auth.user?.balance)} </h4>
+            )}
+            <button className="buttonMoney" onClick={() => setOpen(!open)}>
               {open ? (
-                <img
-                  className="icons"
-                  src={require("../../../src/assets/close-eye.png")}
-                />
+                <div className="infoMoney">
+                  <img
+                    className="icons"
+                    src={require("../../../src/assets/close-eye.png")}
+                  />
+                </div>
               ) : (
-                <img
-                  className="icons"
-                  src={require("../../../src/assets/opened-eye.png")}
-                />
+                <div className="infoMoney">
+                  <img
+                    className="icons"
+                    src={require("../../../src/assets/opened-eye.png")}
+                  />
+                </div>
               )}
             </button>
           </div>

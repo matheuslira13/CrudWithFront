@@ -1,4 +1,26 @@
 const userModel = require("../models/userModels");
+function updateHistoric(his, body) {
+  let updateHistoric = his.push(body);
+}
+
+function dataAtualFormatada() {
+  var data = new Date(),
+    dia = data.getDate().toString(),
+    diaF = dia.length == 1 ? "0" + dia : dia,
+    mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+    mesF = mes.length == 1 ? "0" + mes : mes,
+    anoF = data.getFullYear();
+  return diaF + "/" + mesF + "/" + anoF;
+}
+
+const hoursAndMinutes = () => {
+  var data = new Date(),
+    hour = data.getHours();
+  let hourF = hour.length == 1 ? "0" + hour : hour;
+  let minutes = data.getMinutes();
+  let minutesF = minutes.length == 1 ? "0" + minutes : minutes;
+  return hourF + ": " + minutesF;
+};
 
 class UserController {
   async signUp({ body }, res) {
@@ -79,19 +101,89 @@ class UserController {
     }
     return res.status(200).json({ message: "Deletado com sucesso" });
   }
-  async teste({ body }, res) {
-    const { value, email, id } = body;
 
-    // const verifyIfIsSameEmail = await userModel.findOne({ email: email });
+  async cashout({ body }, res) {
+    const { value, email, type, sendEmail } = body;
 
-    const getUser = await userModel.findById(id);
+    const userData = {
+      email,
+      value,
+      type,
+      date: dataAtualFormatada(),
+      hours: hoursAndMinutes(),
+    };
 
-    try {
-      const updateData = await userModel.insertMany([getUser, body]);
-      return res.status(200).json(updateData);
-    } catch (error) {
-      return res.status(400).json({ message: `Error ${error}` });
+    const getUser = await userModel.findOne({ email: sendEmail });
+
+    const { balance, historic } = getUser;
+
+    if (type === "cash-out") {
+      let newValue = balance - value;
+      console.log("newbalance", newValue, "value", value);
+      var newbalance = { $set: { balance: newValue } };
+
+      let newHistoric = [];
+
+      for (let i = 0; i < historic.length; i++) {
+        newHistoric.push(historic[i]);
+      }
+
+      newHistoric.push(userData);
+
+      await userModel.updateOne({ balance }, newbalance);
+
+      await userModel.updateOne(
+        { historic },
+        {
+          $set: { historic: newHistoric },
+        }
+      );
+
+      return res.status(200).json({ message: "Enviado com sucesso" });
     }
+    return res.status(404).json({ message: "nao foi" });
+  }
+
+  async cashin({ body }, res) {
+    const { value, email, type, sendEmail } = body;
+
+    const userData = {
+      email: sendEmail,
+      value,
+      type,
+      date: dataAtualFormatada(),
+      hours: hoursAndMinutes(),
+    };
+
+    const getUser = await userModel.findOne({ email: email });
+
+    const { balance, historic } = getUser;
+
+    if (type === "cash-in") {
+      let newValue = parseInt(balance) + parseInt(value);
+
+      var newbalance = { $set: { balance: newValue } };
+
+      let newHistoric = [];
+
+      for (let i = 0; i < historic.length; i++) {
+        newHistoric.push(historic[i]);
+      }
+
+      newHistoric.push(userData);
+
+      await userModel.updateOne({ balance }, newbalance);
+
+      await userModel.updateOne(
+        { historic },
+        {
+          $set: { historic: newHistoric },
+        }
+      );
+
+      return res.status(200).json({ message: "Enviado com sucesso" });
+    }
+    return res.status(404).json({ message: "nao foi" });
   }
 }
 

@@ -23,6 +23,11 @@ export type AuthContextType = {
   user: UserType | null;
   signin: (email: string, password: string) => Promise<boolean>;
   signout: () => void;
+  makeCashout: (
+    sendEmail: string,
+    email: string,
+    value: string
+  ) => Promise<any>;
 };
 
 export const AuthContext = createContext<AuthContextType>(null!);

@@ -1,3 +1,4 @@
+const { Decipher } = require("crypto");
 const { string } = require("joi");
 const mongoose = require("mongoose");
 
@@ -6,6 +7,7 @@ const ObjectId = Schema.ObjectId;
 
 const HistoricShema = new Schema({
   author: ObjectId,
+  email: String,
   type: String,
   date: String,
   hours: String,

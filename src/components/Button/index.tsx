@@ -6,11 +6,7 @@ type ButtonProps = {
   onClick?: () => void;
 };
 
-export const Button = ({
-  nameButton,
-
-  onClick,
-}: ButtonProps) => {
+export const Button = ({ nameButton, onClick }: ButtonProps) => {
   return (
     <button className="btnLogin" onClick={onClick}>
       {nameButton}

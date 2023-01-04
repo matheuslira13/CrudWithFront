@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 import { AuthContext, UserType } from "./AuthContext";
-import { SignOut, signIn, validateToken } from "../hooks/useApi";
+import {
+  SignOut,
+  signIn,
+  validateToken,
+  cashoutFunction,
+} from "../hooks/useApi";
+
+export const refresh = (e: boolean) => {
+  return e;
+};
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<UserType | null>(null);
@@ -13,14 +22,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       const storageData = localStorage.getItem("authToken");
       if (storageData) {
         const data = await validateToken(storageData);
-        console.log("teste", data);
         if (data._id) {
           setUser(data);
         }
       }
     };
     verifyToken();
-  }, [validateToken]);
+  }, [validateToken, refresh]);
 
   const signin = async (email: string, password: string) => {
     const data = await signIn(email, password);
@@ -32,13 +40,22 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return false;
   };
 
+  const makeCashout = async (
+    sendEmail: string,
+    email: string,
+    value: string
+  ) => {
+    const data = await cashoutFunction(sendEmail, email, value);
+    return data;
+  };
+
   const signout = async () => {
     await SignOut();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, signin, signout }}>
+    <AuthContext.Provider value={{ user, signin, signout, makeCashout }}>
       {children}
     </AuthContext.Provider>
   );

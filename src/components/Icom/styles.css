@@ -8,8 +8,18 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 15px;
 }
+.iconeEyeMoney {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonMoney {
+  background-color: transparent;
+  border: none;
+}
+
 .DesciptionInRight {
   display: flex;
   justify-content: flex-start;

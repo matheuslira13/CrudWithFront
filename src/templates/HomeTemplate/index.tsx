@@ -8,18 +8,31 @@ import {
   TextInput,
   Button,
 } from "../../components";
-import { formatValue } from "../../utils/formatMoney";
+import useCurrency from "../../utils/useCurrency";
 
 type HomeProps = {
   setFindInList: (arg0: any) => void;
   lista: React.Dispatch<any> | any;
   getFilter: (arg0: string) => Array<string>;
+  setEmail: (arg0: string) => void;
+  setValue: (arg0: string) => void;
+  makeCashout: () => void;
 };
 
-export const Home = ({ setFindInList, getFilter, lista }: HomeProps) => {
+export const Home = ({
+  setFindInList,
+  getFilter,
+  lista,
+  setEmail,
+  setValue,
+  makeCashout,
+}: HomeProps) => {
   const auth = useContext(AuthContext);
-  console.log(auth.user?.name);
-
+  const { formatValue } = useCurrency();
+  const formatMoneyValue = (val: string) => {
+    let t = parseInt(val);
+    console.log(t.toFixed(2).replace(".", "").replace(",", ""));
+  };
   return (
     <div className="containerHome">
       <div className="subContainer">
@@ -52,18 +65,22 @@ export const Home = ({ setFindInList, getFilter, lista }: HomeProps) => {
       </div>
       <div className="subContainer">
         <div className="cashoutContainer">
+          <h3>Transferir &nbsp;</h3>
           <div className="cashoutFirstRow">
-            <h3>Transferir</h3>
-            <h4>Saldo disponivel </h4>
-            <h4>{formatValue(auth.user?.balance)} </h4> <Icon type="icon" />
+            <h4>Saldo disponivel &nbsp; </h4>
+            <Icon type="icon" />
           </div>
           <label className="description"> E-mail: </label>
-          <TextInput type="email" placeholder="digite um e-mail" />
           <TextInput
-            onChange={(e) => setFindInList(e.target.value)}
+            type="email"
+            placeholder="digite um e-mail"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextInput
+            onChange={(e) => formatMoneyValue(e.target.value)}
             placeholder="Valor R$"
           />
-          <Button nameButton="Transferir" />
+          <Button nameButton="Transferir" onClick={makeCashout} />
         </div>
         <HistoricContainer
           getFilter={getFilter}

@@ -1,5 +1,4 @@
 import "./styles.css";
-import { formatValue } from "../../utils/formatMoney";
 type TextInputProps = {
   type?: "text" | "number" | "email";
   placeholder?: string;
