@@ -15,7 +15,6 @@ export const HistoricContainer = ({
     <div className="histoeyContainer">
       <h3>Historico de transacaoes </h3>
       <TextInput
-        type="text"
         placeholder="pesquisar"
         onChange={(e) => setFindInList(e.target.value)}
       />

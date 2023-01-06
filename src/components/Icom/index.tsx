@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import useCurrency from "../../utils/useCurrency";
+import { formatValue } from "../../utils/useCurrency";
 import "./styles.css";
 
 type IconProps = {
@@ -13,7 +13,7 @@ type IconProps = {
 export const Icon = ({ icone, name, url, type }: IconProps) => {
   const [open, setOpen] = useState(false);
   const auth = useContext(AuthContext);
-  const { formatValue } = useCurrency();
+
   if (type === "socialMedia") {
     return (
       <div className="containerUserInfoComplete">

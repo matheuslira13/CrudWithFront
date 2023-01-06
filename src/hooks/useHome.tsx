@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { client } from "../services/baseURL";
 import { refresh } from "../context/AuthProvider";
 import { AuthContext } from "../context/AuthContext";
+import { formatValue } from "../utils/useCurrency";
 
 const useHome = () => {
   const auth = useContext(AuthContext);
@@ -15,7 +16,7 @@ const useHome = () => {
   };
 
   const [findInList, setFindInList] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<any>();
   const [value, setValue] = useState("");
   const [lista, setLista] = useState<any>();
   const [search] = useState(["type", "value"]);
@@ -45,7 +46,15 @@ const useHome = () => {
       refresh(true);
     }
   };
-  console.log(value);
+
+  const MakeMoneyForBack = (money: string) => {
+    let removedR$ = money.replace(/\D/g, "");
+    let calc = Number(removedR$) / 100;
+    let calcString = calc.toString();
+    return calcString;
+  };
+
+  console.log(MakeMoneyForBack(value));
 
   return {
     setFindInList,
@@ -55,6 +64,8 @@ const useHome = () => {
     setEmail,
     setValue,
     makeCashout,
+    email,
+    value: MakeMoneyForBack(value),
   };
 };
 

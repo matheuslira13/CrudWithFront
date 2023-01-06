@@ -1,5 +1,5 @@
 import "./styles.css";
-import useCurrency from "../../utils/useCurrency";
+import { formatValue } from "../../utils/useCurrency";
 type ProfileInforops = {
   img: string;
   name?: string;
@@ -8,7 +8,6 @@ type ProfileInforops = {
 };
 
 export const ProfileInfo = ({ img, name, email, balance }: ProfileInforops) => {
-  const { formatValue, getNumberValue } = useCurrency();
   return (
     <div className="profileInfo">
       <img className="imgProfile" src={img} alt="profile img" />

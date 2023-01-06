@@ -2,8 +2,16 @@ import { Home } from "../templates/HomeTemplate";
 import useHome from "../hooks/useHome";
 
 export const HomeTemplate = () => {
-  const { getFilter, setFindInList, lista, setEmail, setValue, makeCashout } =
-    useHome();
+  const {
+    getFilter,
+    setFindInList,
+    lista,
+    setEmail,
+    setValue,
+    makeCashout,
+    email,
+    value,
+  } = useHome();
   return (
     <Home
       getFilter={getFilter}
@@ -12,6 +20,8 @@ export const HomeTemplate = () => {
       setEmail={setEmail}
       setValue={setValue}
       makeCashout={makeCashout}
+      email={email}
+      value={value}
     />
   );
 };

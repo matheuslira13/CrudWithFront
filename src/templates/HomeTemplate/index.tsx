@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./styles.css";
 import {
@@ -8,7 +8,8 @@ import {
   TextInput,
   Button,
 } from "../../components";
-import useCurrency from "../../utils/useCurrency";
+import { formatValue } from "../../utils/useCurrency";
+import { NumericFormat } from "react-number-format";
 
 type HomeProps = {
   setFindInList: (arg0: any) => void;
@@ -17,6 +18,8 @@ type HomeProps = {
   setEmail: (arg0: string) => void;
   setValue: (arg0: string) => void;
   makeCashout: () => void;
+  email: string;
+  value: string;
 };
 
 export const Home = ({
@@ -26,13 +29,19 @@ export const Home = ({
   setEmail,
   setValue,
   makeCashout,
+  email,
+  value,
 }: HomeProps) => {
   const auth = useContext(AuthContext);
-  const { formatValue } = useCurrency();
-  const formatMoneyValue = (val: string) => {
-    let t = parseInt(val);
-    console.log(t.toFixed(2).replace(".", "").replace(",", ""));
-  };
+
+  const formatMoneyValue = useCallback(
+    (val: any) => {
+      console.log(val);
+      setValue(Number(val / 100).toFixed(2));
+    },
+    [value]
+  );
+
   return (
     <div className="containerHome">
       <div className="subContainer">
@@ -76,10 +85,13 @@ export const Home = ({
             placeholder="digite um e-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <TextInput
-            onChange={(e) => formatMoneyValue(e.target.value)}
-            placeholder="Valor R$"
+
+          <NumericFormat
+            className="inputInsert"
+            prefix={"RS"}
+            onChange={(e) => setValue(e.target.value)}
           />
+
           <Button nameButton="Transferir" onClick={makeCashout} />
         </div>
         <HistoricContainer
